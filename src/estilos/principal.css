@@ -1,0 +1,62 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #FFF8F0;
+  color: #6B4F4F;
+}
+
+/* BOTONES */
+.boton {
+  background-color: #6B4F4F;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.boton:hover {
+  opacity: 0.9;
+}
+
+/* TARJETAS */
+.tarjeta {
+  background: white;
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-4 {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* NAVBAR */
+.barra {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+/* HERO */
+.hero {
+  background: #C7D9A3;
+  padding: 40px;
+  border-radius: 24px;
+  margin: 20px;
+  text-align: center;
+}
+
+/* FOOTER */
+.footer {
+  background: #6B4F4F;
+  color: white;
+  padding: 30px;
+  text-align: center;
+}
