@@ -1,22 +1,90 @@
-import "./estilos/principal.css";
+import { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import BarraNavegacion from "./componentes/BarraNavegacion";
-import Hero from "./componentes/Hero";
-import Categorias from "./componentes/Categorias";
-import Productos from "./componentes/Productos";
-import PiePagina from "./componentes/PiePagina";
-import WidgetWhatsApp from "./componentes/WidgetWhatsApp";
+// ESTILOS
+import "./App.css";
+
+// COMPONENTES
+import BarraNavegacion from "./Componentes/BarraNavegacion";
+import WidgetWhatsApp from "./Componentes/WidgetWhatsApp";
+import Loader from "./Componentes/Loader";
+
+// PÁGINAS
+import Inicio from "./Paginas/Inicio";
+import Categorias from "./Paginas/Categorias";
+import Ofertas from "./Paginas/Ofertas";
+import ProductoDetalle from "./Paginas/ProductoDetalle";
+
+// DATA
+import productosData from "./Data/productos";
 
 function App() {
+  // LOADER
+  const [cargando, setCargando] = useState(true);
+
+  // BUSCADOR GLOBAL
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setCargando(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // LOADER ACTIVO
+  if (cargando) return <Loader />;
+
   return (
-    <>
-      <BarraNavegacion />
-      <Hero />
-      <Categorias />
-      <Productos />
-      <PiePagina />
+    <Router>
+
+      {/* NAVBAR */}
+      <BarraNavegacion setSearchQuery={setSearchQuery} />
+
+      {/* RUTAS */}
+      <Routes>
+
+        {/* INICIO */}
+        <Route
+          path="/"
+          element={
+            <Inicio
+              productos={productosData}
+              searchQuery={searchQuery}
+            />
+          }
+        />
+
+        {/* CATEGORÍAS */}
+        <Route
+          path="/categorias"
+          element={
+            <Categorias
+              productos={productosData}
+              searchQuery={searchQuery}
+            />
+          }
+        />
+
+        {/* OFERTAS */}
+        <Route
+          path="/ofertas"
+          element={<Ofertas productos={productosData} />}
+        />
+
+        {/* DETALLE PRODUCTO */}
+        <Route
+          path="/producto/:id"
+          element={<ProductoDetalle productos={productosData} />}
+        />
+
+      </Routes>
+
+      {/* WHATSAPP */}
       <WidgetWhatsApp />
-    </>
+
+    </Router>
   );
 }
 

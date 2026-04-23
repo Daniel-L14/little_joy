@@ -1,19 +1,24 @@
-import { ShoppingCart, Search } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Search } from "lucide-react";
 
-export default function BarraNavegacion() {
+export default function BarraNavegacion({ setSearchQuery }) {
   return (
     <div className="barra">
       <h2>Little Joy</h2>
 
       <div>
-        <a href="#">Inicio</a> | 
-        <a href="#"> Categorías</a> | 
-        <a href="#"> Ofertas</a>
+        <Link to="/">Inicio</Link>
+        <Link to="/categorias">Categorías</Link>
+        <Link to="/ofertas">Ofertas</Link>
       </div>
 
-      <div>
+      <div className="buscador">
         <Search />
-        <ShoppingCart />
+        <input
+          type="text"
+          placeholder="Buscar..."
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
       </div>
     </div>
   );

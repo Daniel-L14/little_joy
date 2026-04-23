@@ -3,24 +3,15 @@ import { useState } from "react";
 export default function WidgetWhatsApp() {
   const [abierto, setAbierto] = useState(false);
 
-  const telefono = "573000000000";
-
-  const enviar = (mensaje) => {
-    window.open(`https://wa.me/${telefono}?text=${encodeURIComponent(mensaje)}`);
-  };
-
   return (
-    <div style={{ position: "fixed", bottom: 20, right: 20 }}>
+    <div className="whatsapp">
       {abierto && (
-        <div className="tarjeta">
-          <button onClick={() => enviar("Quiero ver el catálogo de recién nacidos.")}>
-            Recién nacidos
+        <div className="chat">
+          <button onClick={() => window.open("https://wa.me/573142352488?text=Quiero ver el catálogo")}>
+            Ver catálogo
           </button>
-          <button onClick={() => enviar("Tengo una duda sobre mi envío.")}>
-            Envío
-          </button>
-          <button onClick={() => enviar("Hablar con una asesora.")}>
-            Asesora
+          <button onClick={() => window.open("https://wa.me/573142352488?text=Tengo una duda")}>
+            Duda
           </button>
         </div>
       )}
